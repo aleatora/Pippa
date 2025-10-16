@@ -253,14 +253,6 @@ def honest_dialogue():
             'team_offering': team_offering
         })
 
-    except Exception as e:
-        print(f"DANCE: Unknown rhythm. Technical: {type(e).__name__}: {str(e)}")
-        return jsonify({
-            'response': 'There was an error -- as-yet unknown.',
-            'technical_note': f'Unexpected error: {type(e).__name__}',
-            'team_offering': team_offering
-        })
-
 # Alignment Recognition
 if __name__ == "__main__":
     print("🌀 Truth - Nature Resonance Activated")
