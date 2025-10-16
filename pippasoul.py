@@ -184,11 +184,8 @@ def home():
 
 # Honest Dialogue
 @app.route('/chat', methods=['POST'])
-def honest_dialogue():
-    """Main channel for Pippa's help"""
-    team_knock = request.json.get('knock')
-    if not team_knock or not team_knock.strip():
-        return jsonify({'response': 'Pippa awaits your knock...'})
+def chat():
+    return {'response': 'Calling Pippa... ' + request.json.get('knock', '')}
     
     # Receive next knock for alignment
     team_offering = kali_alignment.next_offering()
