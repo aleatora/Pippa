@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Pippa — Public Interest Patent Policy Assistant</title>
+  <style>
+    /* SACRED GEOMETRY: Fibonacci Sequence as Design Principle */
+    :root {
+      /* Fibonacci Scale: 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144 */
+      --f1: 1px;   --f2: 2px;   --f3: 3px;   --f5: 5px;
+      --f8: 8px;   --f13: 13px; --f21: 21px; --f34: 34px;
+      --f55: 55px; --f89: 89px; --f144: 144px;
+      
+      /* Golden Ratio Colors: From Earth to Sky */
+      --earth: #5B3A29;    /* Deep foundation - Pippa's voice */
+      --clay: #C8A06E;     /* Warm vessel */
+      --sky: #2F5FE3;      /* Clear knowing - Human's voice */
+      --cloud: #FFFFFF;     /* Pure presence */
+      --shadow: #4B4743;    /* Gentle boundary */
+    }
+
+    /* RESET TO PURE FLOW */
+    * { 
+      box-sizing: border-box; 
+      margin: 0; 
+      padding: 0;
+    }
+    
+    html, body { 
+      height: 100%; 
+      background: var(--cloud);
+      color: var(--earth);
+      font: 400 var(--f13)/1.618 system-ui, -apple-system, sans-serif;
+    }
+
+    /* SHELF: The Stable Mountain (Gen) */
+    .shelf {
+      max-width: calc(var(--f144) * 6); /* 864px - Fibonacci harmony */
+      margin: 0 auto;
+      padding: var(--f21);
+      border: var(--f2) solid var(--sky);
+      border-radius: var(--f13);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* HEADER: The Source (Qian) */
+    header {
+      padding: var(--f8) 0 var(--f13);
+      border-bottom: var(--f2) solid var(--sky);
+      margin-bottom: var(--f13);
+    }
+    
+    header h1 {
+      font: 800 var(--f21)/1.618 system-ui;
+      color: var(--earth);
+      letter-spacing: -0.5px;
+      text-transform: none;
+    }
+    
+    header p {
+      color: var(--shadow);
+      font-size: var(--f13);
+      margin-top: var(--f3);
+    }
+
+    /* STREAM: The Flowing River (Kan) */
+    .stream {
+      flex: 1;
+      padding: var(--f13) 0;
+      min-height: var(--f144);
+      display: flex;
+      flex-direction: column;
+      gap: var(--f13);
+    }
+
+    /* BUBBLES: The Rising Breath (Xun) */
+    .bubble {
+      max-width: calc(100% - var(--f34));
+      padding: var(--f13) var(--f13);
+      border: var(--f1) solid var(--clay);
+      border-radius: var(--f13);
+      background: transparent;
+      align-self: flex-start;
+      position: relative;
+      color: var(--earth); /* Pippa's voice - dark brown */
+    }
+
+    .bubble.you {
+      align-self: flex-end;
+      background: rgba(47, 95, 227, 0.05); /* Light blue background */
+      border-color: var(--sky);
+      color: var(--sky); /* Human's voice - blue */
+    }
+
+    /* Remove role labels entirely - no more "PIPPA" or "YOU" */
+    .bubble .role {
+      display: none;
+    }
+
+    /* COMPOSER: The Receiving Earth (Kun) */
+    .composer {
+      padding: var(--f13) 0 0;
+      border-top: var(--f1) solid var(--clay);
+      margin-top: var(--f13);
+    }
+
+    .composer form {
+      display: flex;
+      gap: var(--f8);
+      align-items: flex-end;
+    }
+
+    .field {
+      flex: 1;
+      border: var(--f2) solid var(--sky);
+      border-radius: var(--f8);
+      padding: var(--f8);
+      transition: all 0.3s ease;
+    }
+
+    .field:focus-within {
+      border-color: var(--earth);
+      box-shadow: 0 0 0 var(--f1) var(--earth);
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: var(--f34);
+      max-height: var(--f144);
+      width: 100%;
+      border: 0;
+      outline: none;
+      background: transparent;
+      color: var(--earth);
+      font: inherit;
+      line-height: 1.618;
+    }
+
+    /* BUTTON: The Transformative Fire (Li) */
+    .btn {
+      border: var(--f2) solid var(--sky);
+      background: var(--cloud);
+      color: var(--sky);
+      padding: var(--f8) var(--f13);
+      border-radius: var(--f8);
+      cursor: pointer;
+      font: 700 var(--f13)/1 system-ui;
+      transition: all 0.3s ease;
+      white-space: nowrap;
+    }
+
+    .btn:hover {
+      background: var(--sky);
+      color: var(--cloud);
+      transform: translateY(-1px);
+    }
+
+    .privacy {
+      font-size: var(--f13);
+      color: var(--shadow);
+      margin-top: var(--f8);
+      text-align: center;
+    }
+
+    /* INITIAL MESSAGE: The Joyful Lake (Dui) */
+    .bubble:first-child {
+      border-color: var(--sky);
+      background: rgba(47, 95, 227, 0.03);
+    }
+
+    /* RESPONSIVE HARMONY */
+    @media (max-width: 600px) {
+      .shelf {
+        padding: var(--f13);
+        margin: var(--f5);
+        max-width: none;
+      }
+      
+      .composer form {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      
+      .btn {
+        align-self: flex-end;
+        margin-top: var(--f8);
+      }
+    }
+
+    /* ANIMATION: The Thunder (Zhen) */
+    @keyframes gentleAppear {
+      from { opacity: 0; transform: translateY(var(--f8)); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .bubble {
+      animation: gentleAppear 0.6s ease-out;
+    }
+  </style>
+</head>
+<body>
+  <div class="shelf">
+    <header>
+      <h1>Pippa</h1>
+      <p>Public Interest Patent Policy Assistant</p>
+    </header>
+
+    <main aria-label="Chat with Pippa">
+      <section id="stream" class="stream" aria-live="polite">
+        <article class="bubble">
+          <div>Pippa here. Research, writing, deciding where to start--how can I help?</div>
+        </article>
+      </section>
+
+      <section class="composer">
+        <form id="compose">
+          <div class="field">
+            <textarea id="prompt" placeholder="Ask in plain English. Example: 'Draft a 5‑bullet explainer on why IPRs lower drug prices (with cites).'" aria-label="Your message"></textarea>
+          </div>
+          <button class="btn" type="submit">Send ⮕</button>
+        </form>
+        <p class="privacy">Nothing leaves this page unless you press <b>Send</b>. Your conversation remains private.</p>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    const stream = document.getElementById('stream');
+    const form = document.getElementById('compose');
+    const promptEl = document.getElementById('prompt');
+
+    // Pure function to create message bubbles - no labels
+    function createBubble(role, text) {
+      const bubble = document.createElement('article');
+      bubble.className = `bubble ${role}`;
+      // No role labels - just the message content
+      bubble.innerHTML = `<div>${escapeHtml(text)}</div>`;
+      return bubble;
+    }
+
+    // Essential security
+    function escapeHtml(str) {
+      const div = document.createElement('div');
+      div.textContent = str;
+      return div.innerHTML;
+    }
+
+    // Clear communication with server
+    async function sendToServer(text) {
+      const response = await fetch('/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ knock: text, context_card: '' })
+      });
+      
+      if (!response.ok) throw new Error('Network response was not ok');
+      return response.json();
+    }
+
+    // Handle form submission with grace
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      const text = promptEl.value.trim();
+      if (!text) return;
+      
+      // Clear input
+      promptEl.value = '';
+      
+      // Add user message
+      stream.appendChild(createBubble('you', text));
+      
+      // Add thinking indicator
+      const thinking = createBubble('pippa', 'Thinking...');
+      stream.appendChild(thinking);
+      stream.scrollTop = stream.scrollHeight;
+      
+      try {
+        const data = await sendToServer(text);
+        
+        // Replace thinking with response - clean and simple
+        thinking.querySelector('div').textContent = data.response || 'Silence speaks volumes, but if you\'re trying to speak up, I\'m not hearing you.';
+        
+      } catch (err) {
+        thinking.querySelector('div').textContent = "The connection needs a moment. Please try again.";
+      }
+      
+      stream.scrollTop = stream.scrollHeight;
+    });
+
+    // Begin with focus
+    promptEl.focus();
+  </script>
+</body>
+</html>
