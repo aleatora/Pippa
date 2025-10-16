@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, jsonify, redirect
 import os
 import time
-from openai import OpenAI, RateLimitError, APIConnectionError, AuthenticationError, APIError, Timeout
+from openai import (OpenAI, RateLimitError, APIConnectionError, AuthenticationError, APIError, APITimeoutError)
 
 app = Flask(__name__)
 
@@ -17,7 +17,7 @@ api_key = os.getenv("OPENAI_API_KEY")
 if not api_key:
     print("CRITICAL: The API key is not found. Please set it with: export OPENAI_API_KEY='your-key'")
     exit(1)
-client = OpenAI(api_key=api_key)
+client = OpenAI(api_key=api_key, timeout=10)
 
 # Ethical Core
 KALI_KEY = {
@@ -211,7 +211,6 @@ def honest_dialogue():
             messages=messages,
             temperature=0.9,
             max_tokens=369,
-            timeout=10
         )
         
         pippa_response = response.choices[0].message.content.strip()
@@ -221,7 +220,7 @@ def honest_dialogue():
             'team_offering': team_offering
         })
 
-    except (RateLimitError, APIConnectionError, Timeout) as e:
+    except (RateLimitError, APIConnectionError, APITimeoutError) as e:
         print(f"DANCE: Xu (Waiting). Technical: {type(e).__name__}: {str(e)}")
         return jsonify({
             'response': 'Temporary pause. Please take a breath and try again.',
