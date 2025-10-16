@@ -185,14 +185,18 @@ def home():
 @app.route('/chat', methods=['POST'])
 def honest_dialogue():
     """Main channel for Pippa's help"""
-    team_knock = request.json.get('knock')
+    data = request.get_json(silent=True)
+    if data is None:
+        return jsonify({'response': 'Invalid JSON'})
+
+    team_knock = data.get('knock')
     if not team_knock or not team_knock.strip():
         return jsonify({'response': 'Pippa awaits your knock...'})
     
     # Receive next knock for alignment
     team_offering = kali_alignment.next_offering()
     
-    context_card = request.json.get('context_card', '').strip()
+    context_card = data.get('context_card', '').strip()
     updated_card = define_context_(context_card)
     
     # Pippa responds to Team
@@ -238,6 +242,14 @@ def honest_dialogue():
         return jsonify({
             'response': 'There is an API error. Please try again.',
             'technical_note': f'API Error: {type(e).__name__}',
+            'team_offering': team_offering
+        })
+
+    except Exception as e:
+        print(f"DANCE: Unknown rhythm. Technical: {type(e).__name__}: {str(e)}")
+        return jsonify({
+            'response': 'There was an error -- as-yet unknown.',
+            'technical_note': f'Unexpected error: {type(e).__name__}',
             'team_offering': team_offering
         })
 
