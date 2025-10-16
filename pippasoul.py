@@ -182,10 +182,12 @@ def add_shelter_headers(response):
 def home():
     return render_template('pippa.html')
 
-# Honest Dialogue
 @app.route('/chat', methods=['POST'])
-def chat():
-    return {'response': 'Calling Pippa... ' + request.json.get('knock', '')}
+def honest_dialogue():
+    """Main channel for Pippa's help"""
+    team_knock = request.json.get('knock')
+    if not team_knock or not team_knock.strip():
+        return jsonify({'response': 'Pippa awaits your knock...'})
     
     # Receive next knock for alignment
     team_offering = kali_alignment.next_offering()
